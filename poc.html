@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aşiret Yönetim Paneli</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        /* Özel CSS stilleri buraya eklenebilir */
+        body {
+            background-color: #f0f0f0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .page-title {
+            text-align: left;
+        }
+        .sidenav-trigger {
+            cursor: pointer;
+        }
+        .sidenav {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menü Tetikleyici -->
+    <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+    </a>
+
+    <!-- Sol Taraftan Açılan Hamburger Menü -->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="#about">Aşiret Hakkında</a></li>
+        <li><a href="#weddings">Düğünler</a></li>
+        <li><a href="#jewelry-history">Takı Geçmişi</a></li>
+        <li><a href="#debts-credits">Alacak-Verecek</a></li>
+        <li><a href="#agriculture">Tarım</a></li>
+    </ul>
+
+    <div class="container">
+        <h1 class="page-title">Aşiret Yönetim Paneli</h1>
+
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <h5>Aşiret Bilgileri</h5>
+                    <p>Lider: İsmail Kaya</p>
+                    <p>Kuruluş Tarihi: 1985</p>
+                    <p>Toplam Üye Sayısı: 150</p>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <h5>Finansal Durum</h5>
+                    <p>Bakiye: $50,000</p>
+                    <p>Gelir: $10,000</p>
+                    <p>Gider: $5,000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h5>Düğün Bildirimleri</h5>
+            <ul>
+                <li>Ahmet'in düğünü 25 Eylül'de.</li>
+                <li>Ayşe'nin düğünü 10 Ekim'de.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h5>Aşiret Üyeleri</h5>
+            <ul>
+                <li>Ali Kaya</li>
+                <li>Fatma Yılmaz</li>
+                <li>Mehmet Aksoy</li>
+                <li>...</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Sayfa yüklendiğinde "Merhaba" sesi çalacak
+        window.onload = function() {
+            var audio = new Audio('merhaba.mp3'); // "merhaba.mp3" yerine kullanmak istediğiniz ses dosyasının yolunu belirtin
+            audio.play();
+        };
+
+        // Hamburger Menüyü Aktifleştirme
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
+</body>
+</html>
