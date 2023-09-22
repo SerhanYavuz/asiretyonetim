@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aşiret Yönetim Paneli</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         /* Özel CSS stilleri buraya eklenebilir */
         body {
@@ -28,12 +29,22 @@
         .sidenav {
             width: 250px;
         }
+        .menu-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .chart-container {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <!-- Hamburger Menü Tetikleyici -->
     <a href="#" data-target="mobile-nav" class="sidenav-trigger">
-        <i class="material-icons">menu</i>
+        <i class="material-icons menu-icon">menu</i>
     </a>
 
     <!-- Sol Taraftan Açılan Hamburger Menü -->
@@ -67,6 +78,12 @@
             </div>
         </div>
 
+        <!-- Havalı Grafikler -->
+        <div class="chart-container">
+            <canvas id="financial-chart"></canvas>
+            <canvas id="wedding-chart"></canvas>
+        </div>
+
         <div class="card">
             <h5>Düğün Bildirimleri</h5>
             <ul>
@@ -75,18 +92,15 @@
             </ul>
         </div>
 
+        <!-- Google Harita -->
         <div class="card">
-            <h5>Aşiret Üyeleri</h5>
-            <ul>
-                <li>Ali Kaya</li>
-                <li>Fatma Yılmaz</li>
-                <li>Mehmet Aksoy</li>
-                <li>...</li>
-            </ul>
+            <h5>Aşiret Üyelerinin Konumu</h5>
+            <div id="map" style="height: 300px;"></div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script>
         // Sayfa yüklendiğinde "Merhaba" sesi çalacak
         window.onload = function() {
@@ -99,6 +113,59 @@
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
         });
+
+        // Finansal Durum Grafiği
+        var ctx1 = document.getElementById('financial-chart').getContext('2d');
+        var financialChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Bakiye', 'Gelir', 'Gider'],
+                datasets: [{
+                    label: 'Miktar ($)',
+                    data: [50000, 10000, 5000],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Düğünler Grafiği
+        var ctx2 = document.getElementById('wedding-chart').getContext('2d');
+        var weddingChart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Ahmet', 'Ayşe'],
+                datasets: [{
+                    data: [1, 1],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ]
+                }]
+            }
+        });
+
+        // Google Harita
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 41.8781, lng: -87.6298}, // Başlangıç konumu (örneğin: Chicago, ABD)
+                zoom: 8 // Yakınlaştırma düzeyi
+            });
+            // Harita üzerinde aşiret üyelerinin konumlarını işlemek için gerekli kodu buraya ekleyebilirsiniz.
+        }
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
