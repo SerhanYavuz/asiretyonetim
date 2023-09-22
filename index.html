@@ -39,6 +39,10 @@
         .chart-container {
             margin-top: 20px;
         }
+        #map {
+            height: 300px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -92,10 +96,10 @@
             </ul>
         </div>
 
-        <!-- Google Harita -->
+        <!-- OpenStreetMap ile Aşiret Üyelerinin Konumu -->
         <div class="card">
             <h5>Aşiret Üyelerinin Konumu</h5>
-            <div id="map" style="height: 300px;"></div>
+            <div id="map"></div>
         </div>
     </div>
 
@@ -157,15 +161,17 @@
             }
         });
 
-        // Google Harita
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 41.8781, lng: -87.6298}, // Başlangıç konumu (örneğin: Chicago, ABD)
-                zoom: 8 // Yakınlaştırma düzeyi
-            });
-            // Harita üzerinde aşiret üyelerinin konumlarını işlemek için gerekli kodu buraya ekleyebilirsiniz.
-        }
+        // OpenStreetMap ile Aşiret Üyelerinin Konumu
+        var map = L.map('map').setView([41.8781, -87.6298], 8); // Başlangıç konumu (örneğin: Chicago, ABD)
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Pin eklemek için marker kullanımı örnek:
+        var marker = L.marker([41.8781, -87.6298]).addTo(map);
+        marker.bindPopup("<b>Aşiret Üyesi 1</b><br>Üye 1'in konumu.").openPopup();
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
