@@ -101,6 +101,57 @@
             <h5>Aşiret Üyelerinin Konumu</h5>
             <div id="map"></div>
         </div>
+
+        <!-- Event Ekle Butonu -->
+        <a class="waves-effect waves-light btn" id="add-event-button">Event Ekle</a>
+
+        <!-- Alacak Ekle Butonu -->
+        <a class="waves-effect waves-light btn" id="add-debt-button">Alacak Ekle</a>
+
+        <!-- Borç Ekle Butonu -->
+        <a class="waves-effect waves-light btn" id="add-credit-button">Borç Ekle</a>
+    </div>
+
+    <!-- Event Ekle Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <h4>Event Ekle</h4>
+            <form>
+                <!-- Event Ekleme Formu İçeriği Buraya Gelecek -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">İptal</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn">Kaydet</a>
+        </div>
+    </div>
+
+    <!-- Alacak Ekle Modal -->
+    <div id="debt-modal" class="modal">
+        <div class="modal-content">
+            <h4>Alacak Ekle</h4>
+            <form>
+                <!-- Alacak Ekleme Formu İçeriği Buraya Gelecek -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">İptal</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn">Kaydet</a>
+        </div>
+    </div>
+
+    <!-- Borç Ekle Modal -->
+    <div id="credit-modal" class="modal">
+        <div class="modal-content">
+            <h4>Borç Ekle</h4>
+            <form>
+                <!-- Borç Ekleme Formu İçeriği Buraya Gelecek -->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">İptal</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn">Kaydet</a>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -172,6 +223,24 @@
         // Pin eklemek için marker kullanımı örnek:
         var marker = L.marker([41.8781, -87.6298]).addTo(map);
         marker.bindPopup("<b>Aşiret Üyesi 1</b><br>Üye 1'in konumu.").openPopup();
+
+        // Event Ekle Butonu
+        document.getElementById('add-event-button').addEventListener('click', function() {
+            var eventModal = M.Modal.getInstance(document.getElementById('event-modal'));
+            eventModal.open();
+        });
+
+        // Alacak Ekle Butonu
+        document.getElementById('add-debt-button').addEventListener('click', function() {
+            var debtModal = M.Modal.getInstance(document.getElementById('debt-modal'));
+            debtModal.open();
+        });
+
+        // Borç Ekle Butonu
+        document.getElementById('add-credit-button').addEventListener('click', function() {
+            var creditModal = M.Modal.getInstance(document.getElementById('credit-modal'));
+            creditModal.open();
+        });
     </script>
 </body>
 </html>
